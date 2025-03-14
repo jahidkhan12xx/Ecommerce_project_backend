@@ -194,6 +194,19 @@ const bestSellingProducts = async (
   }
 }
 
+const newArivalProducts = async (req: AuthenticatedRequest, res: Response) => {
+  try {
+    const products = await productService.newArivalProductsFromDB()
+    if (!products) {
+      res.status(404).json({ message: 'No new arrival found' })
+      return
+    }
+    res.status(200).json(products)
+  } catch (error) {
+    console.log(error)
+  }
+}
+
 export const productController = {
   addProducts,
   updateProducts,
@@ -202,4 +215,5 @@ export const productController = {
   getSingleProduct,
   gerSimilarProducts,
   bestSellingProducts,
+  newArivalProducts,
 }

@@ -13,7 +13,10 @@ export interface Product {
   collections: string[]
   material: string
   gender: 'Men' | 'Women' | 'Unisex'
-  images: string[]
+  images: Array<{
+    url: string
+    alt?: string
+  }>
   isFeatured: boolean
   isPublished: boolean
   rating: number

@@ -45,6 +45,11 @@ const bestSellingProductsFromDB = async () => {
   return products
 }
 
+const newArivalProductsFromDB = async () => {
+  const products = await ProductModel.find({}).sort({ createdAt: -1 })
+  return products
+}
+
 export const productService = {
   addProductIntoDB,
   updateProductIntoDB,
@@ -53,4 +58,5 @@ export const productService = {
   getSingeProductFromDB,
   getSimilarProductsFromDB,
   bestSellingProductsFromDB,
+  newArivalProductsFromDB,
 }

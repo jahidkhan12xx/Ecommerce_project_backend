@@ -26,6 +26,7 @@ router.get('/get-products', productController.getProducts)
 
 router.get('/similar/:id', productController.gerSimilarProducts)
 router.get('/best-seller', productController.bestSellingProducts)
+router.get('/new-arrival', productController.newArivalProducts)
 router.get('/:id', productController.getSingleProduct)
 
 export const productRoutes = router
