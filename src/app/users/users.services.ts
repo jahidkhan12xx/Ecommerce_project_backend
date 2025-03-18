@@ -19,7 +19,7 @@ const loginUserService = async (email: string, password: string) => {
     throw new Error('Invalid password')
   }
 
-  const payload = { email: user.email, role: user.role }
+  const payload = { email: user.email, role: user.role, _id: user._id }
   const token = generateToken(payload)
 
   return { user, token }

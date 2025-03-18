@@ -1,3 +1,4 @@
+import { Types } from 'mongoose'
 import { Cart } from './cart.interface'
 import CartModel from './cart.model'
 
@@ -10,7 +11,14 @@ const saveCartToDB = async (cart: Cart) => {
   return res
 }
 
+const deleteCartFromDBbyUserID = async (id: Types.ObjectId) => {
+  const res = await CartModel.findOneAndDelete({ userId: id })
+
+  return res
+}
+
 export const cartService = {
   getCartFromDB,
   saveCartToDB,
+  deleteCartFromDBbyUserID,
 }

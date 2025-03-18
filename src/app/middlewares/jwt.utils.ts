@@ -1,9 +1,11 @@
 import jwt, { Secret, SignOptions, JwtPayload } from 'jsonwebtoken'
 import envConfig from '../config/env'
+import { Types } from 'mongoose'
 
 export interface TokenPayload extends JwtPayload {
   email: string
   role: string
+  _id: Types.ObjectId
 }
 
 export const generateToken = (

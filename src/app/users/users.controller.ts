@@ -18,7 +18,11 @@ const createUser = async (req: Request, res: Response): Promise<void> => {
     const zodVal = userValidationSchema.safeParse(user)
     if (zodVal.success) {
       const result = await UsersServices.createUserIntoDB(zodVal.data)
-      const payload = { email: result.email, role: result.role }
+      const payload = {
+        email: result.email,
+        role: result.role,
+        _id: result._id,
+      }
       const token = generateToken(payload)
       res.cookie('token', token, {
         httpOnly: true,
@@ -71,7 +75,7 @@ const loginUser = async (req: Request, res: Response) => {
 
 const getUserProfile = async (req: AuthenticatedRequest, res: Response) => {
   try {
-    const userProfile = await UsersServices.findSingleUserById(req.user?.id)
+    const userProfile = await UsersServices.findSingleUserById(req.user?._id)
     res.status(200).json({
       userProfile,
     })
